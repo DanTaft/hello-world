@@ -1,9 +1,16 @@
 # hello-world
-project needs are here
-<!doctype html>
-<HTML lang="en-us">
-<head>
-  <meta charset="utf-8">
-<!-- my first html -->
-</head>
-is a start of my html page
+
+<!doctype HTML>
+<html lang="en">
+  <head>
+    
+  <meta charset="utc 8">
+  <title>Hello HTML</title>
+    
+  </head>
+  <body>
+  <h1>This is a heading</h1>
+  <p>This is a paragraph</p>
+    
+  </body>
+</html>
