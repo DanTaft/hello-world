@@ -1,1 +1,1 @@
-scripts for motivation.html
+//scripts for motivation.html
