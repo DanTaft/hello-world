@@ -1,0 +1,16 @@
+/* styles page for motivation.html*/
+body {
+    background-color: whitesmoke
+}
+.one {
+    background-color: blue;
+    color: white;
+    height: 40px;
+    width: 100px; /* Added missing semicolon */
+    text-align: center;
+}
+li {
+   font-weight: bold;
+   font-size: large;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
