@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>News Letter</title>
+  </head>
+  <body>
+    <h1>Cow Chip Olympics Events Update</h1>
+    <p>Dear Cow Chip Olympics Fans: <q>We hope to bring to you the fun events with chippyness</q></p>
+      <p>April 5 , 2025</p>
+    <p>Our events are as follows:</p>
+      <ul>
+        <li>Chip Toss</li>
+        <li>Chip Put</li>
+        <li>Chip Dash</li>
+        <li>Chip Marathon</li>
+        <li>Chip Water Tank<q>Toss a ball and dunk a vip</q></li>
+      </ul>
+      <p>Bring your picnic lunch and a desert to share.</p>
+      <p>Our events are open to all ages and we encourage you to come out and join us for a day of fun and excitement. We hope to see you there!</p>
+      <h3>Countdown to the Cow Chip Olympics</h3>
+      <p id="countdown"></p>
+      <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Apr 5, 2025 00:00:00").getTime();
+        
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+        
+          // Get the current date and time
+          var now = new Date().getTime();
+        
+          // Calculate the time remaining
+          var distance = countDownDate - now;
+        
+          // Calculate days, hours, minutes, and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+          // Display the countdown in the element with id "countdown"
+          document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+        
+          // If the countdown is over, display a message
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Merry Christmas!";
+          }
+        }, 1000);
+        </script>
+      
+    </body>
+</html>
