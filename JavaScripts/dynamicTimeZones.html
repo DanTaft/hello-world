@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Time Zones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        time {
+            font-weight: bold;
+        }
+        #home {
+            color: #2980b9;
+        }
+    </style>
 </head>
 <body>
 
     <h2>Current Time in Different Time Zones</h2>
+    
+    <p>Denver (Mountain Tme): <time id="home"></time></p>
 
     <p>UTC Time: <time id="utc-time"></time></p>
     <p>New York (Eastern Time): <time id="ny-time"></time></p>
@@ -36,7 +58,7 @@
                     hour12: false
                 }).format(now);
             }
-
+            document.getElementById("home").textContent = formatTime("America/Denver") + " (UTC-7/UTC-6)";
             document.getElementById("ny-time").textContent = formatTime("America/New_York") + " (UTC-5/UTC-4)";
             document.getElementById("la-time").textContent = formatTime("America/Los_Angeles") + " (UTC-8/UTC-7)";
             document.getElementById("london-time").textContent = formatTime("Europe/London") + " (UTC±0)";
