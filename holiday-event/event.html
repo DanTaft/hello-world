@@ -4,51 +4,22 @@
     <title>Cow Chip Olympics</title>
   </head>
   <body>
-    <h1>Cow Chip Olympics Events Update</h1>
+    <h1>Cow Chip Olympics Events</h1>
     <p>Cow Chip Olympics Fans: <q>We hope to bring to you the fun events</q></p>
-      <p>April 5 , 2025</p>
+      <p>August 5 , 2025</p>
     <p>Our events:</p>
       <ul>
         <li>toss<q>toss balls in a bucket for a high score</q></li>
-        <li>stack em<q>stack cow patties while on a swing , superman position</q></li>
-        <li>use  AI<q>create animal themed joke "best joke"</q></li>
-        <li>run to finish<q>Go run to finish timed</q></li>
-        <li></li> caller<q>Best animal noise wins, ok top three</q></li>
+        <li>stack em<q>stack cow patties while on a swing</q></li>
+        <li>use  AI<q>create animal themed dad joke</q></li>
+        <li>run to finish<q>Race our cow</q></li>
+        <li></li> caller<q>Your best animal noise</q></li>
       </ul>
-      <p>Bring your picnic lunch and a desert to share.</p>
+      <p></p>
       <p>Our events are open to all ages and we encourage you to come out and join us for a day of fun and excitement. We hope to see you there!</p>
       <h3>Countdown to the Cow Chip Olympics</h3>
-      <p id="countdown"></p>
-      <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("May 5, 2025 00:00:00").getTime();
-        
-        // Update the countdown every 1 second
-        var x = setInterval(function() {
-        
-          // Get the current date and time
-          var now = new Date().getTime();
-        
-          // Calculate the time remaining
-          var distance = countDownDate - now;
-        
-          // Calculate days, hours, minutes, and seconds
-          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-          // Display the countdown in the element with id "countdown"
-          document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-          + minutes + "m " + seconds + "s ";
-        
-          // If the countdown is over, display a message
-          if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "The Cow Chip Olympics are here!";
-          }
-        }, 1000);
-        </script>
+      
+      
       
     </body>
 </html>
