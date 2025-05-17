@@ -1,0 +1,24 @@
+Name: Daniel Tafolla
+Email: Renew@me.com
+Age: 18
+Who recommended us: online-ad
+Type of painting needed: interior
+Paints used: Sherwin-Williams
+Experiences: next week my living room
+--------------------------
+Name: Billy Bob
+Email: billybob@mail.com
+Age: 20
+Who recommended us: word-of-mouth
+Type of painting needed: exterior
+Paints used: Benjamin Moore
+Experiences: in a month, need exterior done
+--------------------------
+Name: Jane Smith
+Email: janesmith@mail.com
+Age: 40
+Who recommended us: Internet
+Type of painting needed: wood-staining
+Paints used: Behr
+Experiences: in September,  I would like my book cases stained and clear coated
+--------------------------
