@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title>background colors</title>
+      
+</head>
+<body>
+      <h1>Click a button to change the color</h1>
+
+      <form action="">
+            <fieldset>
+                 <input type="button" value = "blue" onClick = "changeColor('blue')"/>
+                 <input type="button" value = "white" onClick = "changeColor('white')"/>
+                 <input type="button" value = "gray" onClick = "changeColor('gray')"/>
+            </fieldset>
+      
+            <fieldset>
+                  <label>Type your name</label>
+                  <input type="text" id="txtName"/>
+                  <input type="button" value="Click me" onclick="sayHi()"/>
+            </fieldset>
+      </form>
+      <div id="txtOutput"></div>
+</body>
+<script>
+      function changeColor(color){
+         document.body.style.backgroundColor = color;   
+      }
+      function sayHi(){
+            let txtName = document.getElementById("txtName");
+            let txtOutput = document.getElementById("txtOutput");
+            txtOutput.textContent = "Hi, " + txtName.value + "!";
+      }
+</script>
+      
+</html>
