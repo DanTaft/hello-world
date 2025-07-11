@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Survey Form - JavaScript Version</title>
+<link rel="stylesheet" href="survey.css">
+<style>
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #c3e6cb;
+}
+
+.submissions-list {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.submission-item {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border-left: 4px solid #2c5aa0;
+}
+</style>
+</head>
+<body>
+<div class="form-container">
+<h1>Survey Form</h1>
+<p class="subtitle">Painting Services Survey</p>
+
+<div id="success-message" class="success-message" style="display: none;">
+    Thank you! Your survey has been submitted successfully.
+</div>
+
+<form id="survey-form">
+  <!-- Basic Information -->
+  <div class="form-section">
+    <div class="section-title">Basic Information</div>
+    
+    <div class="form-row">
+        <label class="required" for="name">Name:</label>
+        <input id="name" name="name" type="text" placeholder="Enter your full name" required>
+    </div>
+    
+    <div class="form-row">
+        <label class="required" for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+    </div>
+
+    <div class="form-row">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18" max="120" placeholder="18" required>
+    </div>
+  
+    <div class="form-row">
+        <label>What made you choose us?</label>
+        <select name="referral">
+          <option value="">Select an option</option>
+          <option value="a friend">A friend</option> 
+          <option value="realtor">Realtor</option>
+          <option value="online-ad">Online ad</option>
+        </select>
+    </div>
+  </div>
+
+  <!-- Painting Requirements -->
+  <div class="form-section">
+    <div class="section-title">Painting Requirements</div>
+    
+    <p class="question-label">What kind of painting do you need?</p>
+    <div class="radio-group">
+        <div class="radio-item">
+            <input type="radio" name="painting-type" value="interior">
+            <label>Interior</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" name="painting-type" value="exterior">
+            <label>Exterior</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" name="painting-type" value="both">
+            <label>Both interior and exterior</label>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <label>Timeline:</label>
+        <select name="timeline">
+          <option value="">Select timeline</option>
+          <option value="within-1-month">Within 1 month</option>
+          <option value="1-3-months">1-3 months</option>
+          <option value="3-6-months">3-6 months</option>
+          <option value="flexible">Flexible timing</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label>Budget range:</label>
+        <select name="budget">
+          <option value="">Select budget range</option>
+          <option value="under-500">Under $500</option>
+          <option value="500-1000">$500 - $1,000</option>
+          <option value="1000-3000">$1,000 - $3,000</option>
+          <option value="3000-5000">$3,000 - $5,000</option>
+          <option value="5000-10000">$5,000 - $10,000</option>
+          <option value="over-10000">Over $10,000</option>
+        </select>
+    </div>
+  </div>
+
+  <!-- Contact Information -->
+  <div class="form-section">
+    <div class="section-title">Contact Information</div>
+    
+    <p class="question-label">Preferred contact method:</p>
+    <div class="radio-group">
+        <div class="radio-item">
+            <input type="radio" name="contact-method" value="phone">
+            <label>Phone</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" name="contact-method" value="email">
+            <label>Email</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" name="contact-method" value="text">
+            <label>Text message</label>
+        </div>
+    </div>
+  </div>
+
+  <!-- Additional Information -->
+  <div class="form-section">
+    <div class="section-title">Additional Information</div>
+    
+    <div class="form-row">
+        <label for="experiences">Previous experiences or special requests:</label>
+        <textarea id="experiences" name="experiences" rows="4" placeholder="Please share any previous experiences, concerns, or special requests..."></textarea>
+    </div>
+  </div>
+    
+    <input type="submit" value="Submit Survey">
+</form>
+
+<!-- Admin panel to view submissions -->
+<div class="form-section">
+    <div class="section-title">Admin Panel - View Submissions</div>
+    <button onclick="showSubmissions()" style="background: #2c5aa0; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">View All Submissions</button>
+    <button onclick="clearSubmissions()" style="background: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Clear All Data</button>
+    
+    <div id="submissions-container"></div>
+</div>
+
+</div>
+
+<script>
+document.getElementById('survey-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+    
+    // Get form data
+    const formData = new FormData(this);
+    const data = {};
+    
+    // Convert FormData to regular object
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    
+    // Add timestamp
+    data.timestamp = new Date().toLocaleString();
+    
+    // Get existing submissions from localStorage
+    let submissions = JSON.parse(localStorage.getItem('surveySubmissions') || '[]');
+    
+    // Add new submission
+    submissions.push(data);
+    
+    // Save back to localStorage
+    localStorage.setItem('surveySubmissions', JSON.stringify(submissions));
+    
+    // Show success message
+    document.getElementById('success-message').style.display = 'block';
+    
+    // Reset form
+    this.reset();
+    
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+        document.getElementById('success-message').style.display = 'none';
+    }, 5000);
+    
+    console.log('Form submitted:', data);
+});
+
+function showSubmissions() {
+    const submissions = JSON.parse(localStorage.getItem('surveySubmissions') || '[]');
+    const container = document.getElementById('submissions-container');
+    
+    if (submissions.length === 0) {
+        container.innerHTML = '<p>No submissions yet.</p>';
+        return;
+    }
+    
+    let html = '<div class="submissions-list"><h3>Survey Submissions (' + submissions.length + ')</h3>';
+    
+    submissions.forEach((submission, index) => {
+        html += '<div class="submission-item">';
+        html += '<h4>Submission #' + (index + 1) + ' - ' + submission.timestamp + '</h4>';
+        html += '<p><strong>Name:</strong> ' + (submission.name || 'N/A') + '</p>';
+        html += '<p><strong>Email:</strong> ' + (submission.email || 'N/A') + '</p>';
+        html += '<p><strong>Age:</strong> ' + (submission.age || 'N/A') + '</p>';
+        html += '<p><strong>Referral:</strong> ' + (submission.referral || 'N/A') + '</p>';
+        html += '<p><strong>Painting Type:</strong> ' + (submission['painting-type'] || 'N/A') + '</p>';
+        html += '<p><strong>Timeline:</strong> ' + (submission.timeline || 'N/A') + '</p>';
+        html += '<p><strong>Budget:</strong> ' + (submission.budget || 'N/A') + '</p>';
+        html += '<p><strong>Contact Method:</strong> ' + (submission['contact-method'] || 'N/A') + '</p>';
+        html += '<p><strong>Comments:</strong> ' + (submission.experiences || 'N/A') + '</p>';
+        html += '</div>';
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function clearSubmissions() {
+    if (confirm('Are you sure you want to delete all submissions?')) {
+        localStorage.removeItem('surveySubmissions');
+        document.getElementById('submissions-container').innerHTML = '<p>All submissions have been cleared.</p>';
+    }
+}
+
+// Optional: Export data as CSV
+function exportToCSV() {
+    const submissions = JSON.parse(localStorage.getItem('surveySubmissions') || '[]');
+    
+    if (submissions.length === 0) {
+        alert('No data to export');
+        return;
+    }
+    
+    // Create CSV headers
+    const headers = ['Timestamp', 'Name', 'Email', 'Age', 'Referral', 'Painting Type', 'Timeline', 'Budget', 'Contact Method', 'Comments'];
+    
+    // Create CSV content
+    let csvContent = headers.join(',') + '\n';
+    
+    submissions.forEach(submission => {
+        const row = [
+            submission.timestamp || '',
+            submission.name || '',
+            submission.email || '',
+            submission.age || '',
+            submission.referral || '',
+            submission['painting-type'] || '',
+            submission.timeline || '',
+            submission.budget || '',
+            submission['contact-method'] || '',
+            (submission.experiences || '').replace(/,/g, ';') // Replace commas to avoid CSV issues
+        ];
+        csvContent += row.join(',') + '\n';
+    });
+    
+    // Download CSV
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'survey_submissions.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
