@@ -1,1 +1,1 @@
-These are small projects pages that I'm working on in VS code, practice
+This repository is a collection of projects , that began my learning process
